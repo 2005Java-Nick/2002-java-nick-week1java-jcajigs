@@ -92,17 +92,25 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
+			if(getSideOne() == getSideTwo() && getSideTwo() == getSideThree()) {
+				return true;
+			}
 			return false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if(!isEquilateral() && !isScalene()) {
+				return true;
+			}
+		return false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
+			if(getSideOne() != getSideTwo() 
+			   && getSideOne() != getSideThree() 
+			   && getSideTwo() != getSideThree()){
+			return true;
+			}
 			return false;
 		}
 
@@ -124,8 +132,31 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int letterScore = 0;
+		String word = string;
+		word = word.toLowerCase();
+		for(int i = 0; i<= word.length();i++) {
+			switch(word.charAt(i)) {
+			case 'd': letterScore+=2;
+			case 'g': letterScore+=2;
+			case 'b': letterScore+=3;
+			case 'c': letterScore+=3;
+			case 'm': letterScore+=3;
+			case 'p': letterScore+=3;
+			case 'f': letterScore+=4;
+			case 'h': letterScore+=4;
+			case 'v': letterScore+=4;
+			case 'w': letterScore+=4;
+			case 'y': letterScore+=4;
+			case 'k': letterScore+=5;
+			case 'j': letterScore+=8;
+			case 'x': letterScore+=8;
+			case 'q': letterScore+=10;
+			case 'z': letterScore+=10;
+			default: letterScore+=1;
+			}
+		}
+		return letterScore;
 	}
 
 	/**
