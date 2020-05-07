@@ -1,10 +1,13 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class EvaluationService {
+
+	private static final String[] String = null;
 
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
@@ -135,24 +138,40 @@ public class EvaluationService {
 		int letterScore = 0;
 		String word = string;
 		word = word.toLowerCase();
-		for(int i = 0; i<= word.length();i++) {
+		for(int i = 0; i < word.length();i++) {
 			switch(word.charAt(i)) {
 			case 'd': letterScore+=2;
+				break;
 			case 'g': letterScore+=2;
+				break;
 			case 'b': letterScore+=3;
+				break;
 			case 'c': letterScore+=3;
+				break;
 			case 'm': letterScore+=3;
+				break;
 			case 'p': letterScore+=3;
+				break;
 			case 'f': letterScore+=4;
+				break;
 			case 'h': letterScore+=4;
+				break;
 			case 'v': letterScore+=4;
+				break;
 			case 'w': letterScore+=4;
+				break;
 			case 'y': letterScore+=4;
+				break;
 			case 'k': letterScore+=5;
+				break;
 			case 'j': letterScore+=8;
+				break;
 			case 'x': letterScore+=8;
+				break;
 			case 'q': letterScore+=10;
+				break;
 			case 'z': letterScore+=10;
+				break;
 			default: letterScore+=1;
 			}
 		}
@@ -195,9 +214,7 @@ public class EvaluationService {
 		String uncleanPhoneNumber = string;
 		for(int i = 0; i<=uncleanPhoneNumber.length();i++) {
 			if(Character.isDigit(uncleanPhoneNumber.charAt(i))) {
-				if(i == 0 && uncleanPhoneNumber.charAt(i) != '1') {
-					cleanPhoneNumber+=uncleanPhoneNumber.charAt(i);
-				}
+					
 			}
 		}
 		return cleanPhoneNumber;
@@ -213,8 +230,20 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		Map<String, Integer> wordMap = new HashMap<String, Integer>();
+		String [] arr = string.split(" ");
+		int counter = 1;
+		 for(int i = 0;i <= arr.length; i++) {
+			 if(wordMap.containsKey(arr[i])) {
+				 wordMap.put(arr[i], counter);
+			 }
+			 else {
+				 int newCount = wordMap.get(arr[i]);
+				 wordMap.replace(arr[i], newCount, newCount+1);
+			 }
+		 }
+		 return wordMap;
 	}
 
 	/**
@@ -256,7 +285,7 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
+			
 			return 0;
 		}
 
@@ -271,9 +300,7 @@ public class EvaluationService {
 
 		public void setSortedList(List<T> sortedList) {
 			this.sortedList = sortedList;
-		}
-
-	}
+		}}
 
 	/**
 	 * 8. Implement a program that translates from English to Pig Latin.
@@ -293,9 +320,48 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
-	}
+		String pigLatin = string;
+		
+		for (int i = 0; i<= pigLatin.length(); i++) {
+			
+		switch(pigLatin.charAt(0)) {
+			case 'a':
+			case 'e':
+			case 'i':
+			case 'o':
+			case 'u':
+			pigLatin = pigLatin.concat("ay");
+				return pigLatin;
+			case 'b':
+			case 'c':
+			case 'd':
+			case 'f':
+			case 'g':
+			case 'h':
+			case 'j':
+			case 'k':
+			case 'l':
+			case 'm':
+			case 'n':
+			case 'p':
+			case 'q':
+			case 'r':
+			case 's':
+			case 't':
+			case 'v':
+			case 'w':
+			case 'x':
+			case 'y':
+			case 'z':
+			case ' ':
+			pigLatin = pigLatin.substring(1) + pigLatin.charAt(0);
+			break;
+			}
+		}
+		return pigLatin;
+		}
+		
+	
 
 	/**
 	 * 9. An Armstrong number is a number that is the sum of its own digits each
@@ -313,7 +379,27 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
+		int number = input;
+		int remainder = 0;
+		int value = number;
+		int answer = 0;
+		//(int)(Math.Log10(n)+1 returns the amounts of digits in an int
+		if((int)(Math.log10(number)+1) == 1) {
+			return true;
+		}
+		
+		while (value != 0) {
+			remainder = value % 10; //Takes last digit into remainder
+			answer += Math.pow(remainder,3); // raises power and adds to answer
+			value = value/10; //Removes last digit 
+		}
+		
+		//armstrong check
+		if(answer == number) {
+			return true;
+		}
+		
+		
 		return false;
 	}
 
@@ -328,8 +414,9 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
+		
 		return null;
+		
 	}
 
 	/**
@@ -386,7 +473,9 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
+		
+		
+		
 		return 0;
 	}
 
