@@ -528,7 +528,7 @@ public class EvaluationService {
 			char[] alphabet = "zycwvutsrqponmlkjihgfedcba".toCharArray();
 			
 			for(int i = 0; i<= word.length(); i++) {
-				
+				//encoded[i] = alphabet;
 			}
 			
 			
@@ -576,7 +576,6 @@ public class EvaluationService {
 		
 		for(int i = 0; i <= isbn.length();i++) {
 			numbers[i] = Character.getNumericValue(isbn.charAt(i));
-			System.out.println(numbers[i]);
 		}
 		
 		if(isbn.charAt(9) == 'x') {
@@ -708,8 +707,40 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
+		String wordProblem = string;
+		String [] words = wordProblem.split(" ");
+		int left = 0;
+		int right = 0;
+		
+		for(int i = 0; i <= words.length; i++) {
+			if(words[i].matches("[0-9]+")) {
+				left = Integer.parseInt(words[i]);
+				words[i] = "x";
+			}
+		}
+		
+		for(int i = 0; i <= words.length; i++) {
+			if(words[i].matches("[0-9]+")) {
+				right = Integer.parseInt(words[i]);
+				words[i] = "x";
+			}
+		}
+		
+		
+		for(int i = 0; i<= words.length; i++) {
+			if(words[i] == "plus") {
+				return left + right;
+			}
+			if(words[i] == "minus") {
+				return left - right;
+			}
+			if(words[i] == "multiplied by") {
+				return left * right;
+			}
+			if(words[i] == "divided by") {
+				return left / right;
+			}
+		}
 		return 0;
 	}
-
 }
