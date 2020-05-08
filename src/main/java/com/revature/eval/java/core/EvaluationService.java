@@ -33,7 +33,9 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		String[] arr = phrase.split(" ");
+
+		String phrase2 = phrase.replace("-", " ");
+		String[] arr = phrase2.split(" ");
 		String acronym = "";
 		
 		for(int i = 0;i <= arr.length -1; i++) {
@@ -209,17 +211,15 @@ public class EvaluationService {
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
+	
+	
 	public String cleanPhoneNumber(String string) {
-		String cleanPhoneNumber ="";
-		String uncleanPhoneNumber = string;
-		for(int i = 0; i<=uncleanPhoneNumber.length();i++) {
-			if(Character.isDigit(uncleanPhoneNumber.charAt(i))) {
-					
-			}
-		}
+		
+		String cleanPhoneNumber = string.replaceAll("[^0-9]", "");
+
 		return cleanPhoneNumber;
 	}
-
+	
 	/**
 	 * 6. Given a phrase, count the occurrences of each word in that phrase.
 	 * 
@@ -230,20 +230,20 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		
-		Map<String, Integer> wordMap = new HashMap<String, Integer>();
-		String [] arr = string.split(" ");
-		int counter = 1;
-		 for(int i = 0;i <= arr.length; i++) {
-			 if(wordMap.containsKey(arr[i])) {
-				 wordMap.put(arr[i], counter);
-			 }
-			 else {
-				 int newCount = wordMap.get(arr[i]);
-				 wordMap.replace(arr[i], newCount, newCount+1);
-			 }
-		 }
-		 return wordMap;
+	 
+		Map<String,Integer> map = new HashMap<String, Integer>();
+		String string2 = string.replace("\n", "");
+		String words[]=string2.split(",|//s");
+			String word;
+			for(String i:words) {
+				word = i;
+				if(map.containsKey(i)){
+					int count=map.get(word);
+					map.put(word, count + 1);
+				}else 
+					map.put(word, 1);
+			}
+			return map;
 	}
 
 	/**
@@ -383,18 +383,16 @@ public class EvaluationService {
 		int remainder = 0;
 		int value = number;
 		int answer = 0;
-		//(int)(Math.Log10(n)+1 returns the amounts of digits in an int
 		if((int)(Math.log10(number)+1) == 1) {
 			return true;
 		}
 		
 		while (value != 0) {
-			remainder = value % 10; //Takes last digit into remainder
-			answer += Math.pow(remainder,3); // raises power and adds to answer
-			value = value/10; //Removes last digit 
+			remainder = value % 10; 
+			answer += Math.pow(remainder,3); 
+			value = value/10; 
 		}
 		
-		//armstrong check
 		if(answer == number) {
 			return true;
 		}
@@ -473,10 +471,23 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
+		int n = i;
+		int number = 1;
+		int count = 0;
+		int j;
 		
-		
-		
-		return 0;
+		while(count < n) {
+			number++;
+			for(j = 2; j<= number; j++) {
+				if(number % j == 0) {
+					break;
+				}
+			}
+			if(j == number) {
+				count++;
+			}
+		}
+	    return number;
 	}
 
 	/**
@@ -512,8 +523,16 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String word = string;
+			char [] encoded = new char[string.length()];
+			char[] alphabet = "zycwvutsrqponmlkjihgfedcba".toCharArray();
+			
+			for(int i = 0; i<= word.length(); i++) {
+				
+			}
+			
+			
+			return word;
 		}
 
 		/**
@@ -551,7 +570,23 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
+		String isbn = string.toLowerCase();
+		isbn = isbn.replaceAll("\\p{P}", "");
+		Integer [] numbers = new Integer[isbn.length()];
+		
+		for(int i = 0; i <= isbn.length();i++) {
+			numbers[i] = Character.getNumericValue(isbn.charAt(i));
+			System.out.println(numbers[i]);
+		}
+		
+		if(isbn.charAt(9) == 'x') {
+			numbers[9] = 10;
+		}
+		
+		
+		
+		
+	
 		return false;
 	}
 
